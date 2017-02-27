@@ -1,0 +1,27 @@
+<div class="currency-converter">
+  <span class="title">Currency converter</span>
+  <div class="input-container">
+    <span class="input-title">Type in amount and select currency:</span>
+    <div class="input-controls">
+      <input placeholder="0.00" type="number" ng-model="$ctrl.fromValue" ng-change="$ctrl.fromChanged()" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" min="0.00"/>
+      <carousel-select type="from" currency="{{$ctrl.fromCurrency}}" items="{{$ctrl.currencyLabels}}" on-update="$ctrl.updateExchangeCurrency(type, currency)"></carousel-select>
+    </div>
+  </div>
+  <div class="input-container">
+    <span class="input-title">Converted amount:</span>
+    <div class="input-controls">
+      <input placeholder="0.00" type="number" ng-model="$ctrl.toValue" ng-change="$ctrl.toChanged()" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" min="0.00"/>
+      <carousel-select type="to" currency="{{$ctrl.toCurrency}}" items="{{$ctrl.currencyLabels}}" on-update="$ctrl.updateExchangeCurrency(type, currency)"></carousel-select>
+    </div>
+  </div>
+  <span class="disclaimer" ng-click="$ctrl.toggleDisclaimer()">{{$ctrl.infoLabel}}</span>
+  <div class="exchange-info-container" ng-if="$ctrl.infoShowing">
+    <span class="info-title">Exchange Rate Information</span>
+    <span class="base-label">Base currency: <span class="bold">{{$ctrl.getCurrencyLabel($ctrl.fromCurrency)}}</span></span>
+    <span class="exchange-label">Exchange rates to currencies:</span>
+    <div class="exchange-info" ng-repeat="currency in $ctrl.infoRates">
+      <span class="currency-label">{{currency.currency}}</span>
+      <span class="value-label">{{currency.value}}</span>
+    </div>
+  </div>
+</div>

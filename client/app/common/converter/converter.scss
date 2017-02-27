@@ -1,0 +1,96 @@
+@import '../common';
+
+.currency-converter {
+  @include box-sizing(border-box);
+  border: 1px solid #060606;
+  color: #000;
+  font-weight: bold;
+  padding: 14px 20px 14px 20px;
+  max-width:386px;
+  width: 100%;
+  background: #fff;
+  float: left;
+
+  .title {
+    font-size: $px16;
+    display: block;
+  }
+
+  .input-container {
+    margin-top: 14px;
+    float: left;
+    width: 100%;
+
+    .input-title {
+      font-size: $px12;
+    }
+
+    .input-controls {
+      width: 100%;
+      height: 48px;
+      margin-top:5px;
+
+      input {
+        @include border-radius(3px);
+        @include box-sizing(border-box);
+        border: 1px solid #a2a2a2;
+        color: #888888;
+        padding: 10px;
+        font-size: $px14;
+        float: left;
+        height: 100%;
+        width: calc(100% - #{$cs-offset-width});
+      }
+
+
+    }
+  }
+
+  .disclaimer {
+    margin-top:22px;
+    font-size:$px12;
+    color: #3b5fff;
+    float: left;
+    width:100%;
+    text-align: right;
+    text-decoration: underline;
+  }
+
+  .exchange-info-container {
+    margin-top: 10px;
+
+    .info-title {
+      display: block;
+    }
+
+    .base-label {
+      display: block;
+      font-size: 12px;
+
+      .bold {
+        font-weight:bold;
+      }
+    }
+
+    .exchange-label {
+      margin-top:5px;
+      display: block;
+    }
+
+    .exchange-info {
+      font-size:12px;
+    }
+  }
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .currency-converter {
+    max-width: 100%;
+
+    .input-container {
+      .input-controls {
+        height: 68px;
+      }
+    }
+  }
+}

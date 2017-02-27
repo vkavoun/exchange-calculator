@@ -1,0 +1,72 @@
+@import '../common';
+
+.carousel-select {
+  @include box-sizing(border-box);
+  @include border-radius(3px);
+  @include background-gradient(#f9f9f9,#d4d4d4);
+
+  position: relative;
+  float:left;
+  width: 128px;
+  height: 100%;
+  border: 1px solid #a4a4a4;
+  margin-left: $cs-margin-left;
+
+
+  .state-label {
+    font-size: $px16;
+    height: $px12;
+    position: relative;
+    top: calc(50% - #{$px8});
+    color: #6e6e6e;
+    left: 20px;
+  }
+
+  .select-previous, .select-next {
+    position: absolute;
+    display: block;
+    right: 20px;
+    height: 12px;
+    width: 14px;
+    overflow: hidden;
+  }
+
+  .select-previous {
+    top: 5px;
+
+    .arrow-up {
+      @extend .arrow-up-abs;
+    }
+  }
+
+  .select-next {
+    bottom: 5px;
+
+    .arrow-down {
+      @extend .arrow-down-abs;
+    }
+  }
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .carousel-select {
+    .state-label {
+      font-size: $px14;
+      left: 10px;
+    }
+
+    .select-previous, .select-next {
+      height: 16px;
+      width: 24px;
+      right: 16px;
+    }
+
+    .select-previous {
+      top: 10px;
+    }
+
+    .select-next {
+      bottom: 10px;
+    }
+  }
+}

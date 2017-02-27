@@ -1,0 +1,168 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+$primaryColor: #0277bd;
+$accentColor: #1de9b6;
+$bgColor: #cecece;
+$darkBgColor: #263238;
+$lightBgColor: #cecece;
+$lightTextColor: #f5f5f5;
+$darkTextColor: #212121;
+
+@function getPxAsEm($px) {
+  @return $px / 16 * 1em;
+}
+
+@function getPxAsRem($px) {
+  @return $px / 16 * 1rem;
+}
+
+@function unitFree($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function getRem($px, $size:16px) {
+  @if unit($px) == px {
+    @return getPxAsRem(unitFree($px));
+  } @else if unit($px) == rem {
+    @return $px;
+  } @else {
+    @return ($unit/100%) * $size;
+  }
+}
+
+@function getPxSize($unit, $size){
+  @if unit($unit) == px {
+    @return $size;
+  } @else if unit($unit) == em {
+    @return unitFree($unit)*$size;
+  } @else {
+    @return ($unit/100%) * $size;
+  }
+}
+
+@function getEmAsPercent($em,$em-size,$size){
+  @return percentage(( unitFree($em) * $em-size ) / $absSize);
+}
+
+@function getLineHeight($fontSize,$lineHeight){
+  @return (($lineHeight/$emSize)/($fontSize / $emSize));
+}
+
+@function getLineHeightAsEm($fontSize, $lineHeight){
+  @return getLineHeight($fontSize, $lineHeight)*1em;
+}
+
+@function getLineHeightAsRem($fontSize, $lineHeight){
+  @return getLineHeight($fontSize, $lineHeight)*1rem;
+}
+
+$px1: getRem(1px);
+$px2: getRem(2px);
+$px6: getRem(6px);
+$px7: getRem(7px);
+$px8: getRem(8px);
+$px10: 0.625rem;
+$px12: 0.75rem;
+$px14: 0.875rem;
+$px16: 1rem;
+$px18: 1.125rem;
+$px20: 1.25rem;
+$px24: 1.5rem;
+$px30: 1.875rem;
+$px32: 2rem;
+
+@mixin box-sizing($input) {
+  -webkit-box-sizing: $input;
+  -moz-box-sizing: $input;
+  box-sizing: $input
+}
+
+@mixin border-radius($input) {
+  -webkit-border-radius: $input;
+  -moz-border-radius: $input;
+  border-radius: $input;
+}
+
+@mixin background-gradient($startColor: #3C3C3C, $endColor: #999999) {
+  background-color: $startColor;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($startColor), to($endColor));
+  background-image: -webkit-linear-gradient(top, $startColor, $endColor);
+  background-image: -moz-linear-gradient(top, $startColor, $endColor);
+  background-image: -ms-linear-gradient(top, $startColor, $endColor);
+  background-image: -o-linear-gradient(top, $startColor, $endColor);
+  background-image: linear-gradient(top, $startColor, $endColor);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}');
+}
+
+// abstract class to be extended
+.arrow-up-abs, .arrow-down-abs {
+  background: #494949;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+  display: block;
+
+  position: relative;
+  width: 16px;
+  height: 16px;
+  left: -1px;
+}
+
+.arrow-up-abs {
+  top: 8px;
+}
+
+// abstract class to be extended
+.arrow-down-abs {
+  top:-12px;
+}
+
+@media screen and (min-resolution: 2dppx) {
+  .arrow-up-abs, .arrow-down-abs {
+    width: 16px;
+    height: 16px;
+    left: 4px;
+  }
+
+  .arrow-up-abs {
+    top: 8px;
+  }
+
+  .arrow-down-abs {
+    top: -8px;
+  }
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media screen and (min-resolution: 2dppx) {
+  html {
+    font-size: 32px;
+  }
+}
+
+body {
+  height: 100%;
+  // browsers default to 16px for font-size,
+  // so setting top-level font-size to 62.5%
+  // scales 1rem to equal 10px.
+  font: 16px 'Roboto', sans-serif;
+  background: $bgColor;
+}
+
+// this value already includes the margin between the input and the carousel widget
+// 128px is the width
+$cs-width: 128px;
+$cs-margin-left: 10px;
+$cs-offset-width: $cs-width + $cs-margin-left;
