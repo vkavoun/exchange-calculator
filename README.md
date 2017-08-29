@@ -1,4 +1,4 @@
-# AnugularJS 1.5+ with web components and ES6 with example component
+# AngularJS 1.5+ with web components and ES6 with example component
 
 This project is based off the project NG6-starter from AngularClass (https://github.com/AngularClass/NG6-starter).
 

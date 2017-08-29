@@ -12,11 +12,20 @@ export default class ExchangeService {
     let targetUrl = AppConstants.EXCHANGE_API.replace("##BASE##", base);
 
     return rx.Observable
-      .fromPromise(this.$http({
-        url: targetUrl,
-        method: "jsonp"
-      }));
-
+      .fromPromise(function() {
+        try {
+          return this.$http({
+            url: targetUrl,
+            method: "jsonp"
+          })
+        }
+        catch(Exception e) {
+          return {
+            type: 'connection problem',
+            msg: 'connection problem'
+          }
+        }
+      });
   }
 }
 
