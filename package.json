@@ -4,7 +4,7 @@
   "description": "Bare bones AngularJs + ES6 + Web Components project with an example currency exchange calculator component",
   "main": "index.js",
   "dependencies": {
-    "angular": "^1.5.0",
+    "angular": "^1.8.0",
     "angular-ui-router": "^1.0.0-beta.1",
     "money": "^0.2.0",
     "normalize.css": "^3.0.3",
